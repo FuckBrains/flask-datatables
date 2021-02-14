@@ -63,11 +63,11 @@ def get_resource(Resource, Table, Session, basepath="/"):
             if 'q' in parsed.keys():
                 query = views.search(Session, Table, parsed)
 
-            total_query = 'select count(id) from {0}'.format(Table.__tablename__)                                                                     
+            total_query = 'select count(id) from {0}'.format(Table.__tablename__)
             total_records = Session.execute(total_query).first()
             if total_records:
                 total_recs = int(total_records[0])
-                log_debug("total recs for table {} is {}".format(Table.__tablename__, total_recs))                                                    
+                log_debug("total recs for table {} is {}".format(Table.__tablename__, total_recs))
             else:
                 total_recs = 0
 
@@ -270,7 +270,7 @@ class DataTable(object):
 
         query = self.query
         # total_records = query.count()
-	total_records = self.total_recs
+        total_records = self.total_recs
 
         # handle searches here rather than using the old searchable function
         if search.get("value", None):

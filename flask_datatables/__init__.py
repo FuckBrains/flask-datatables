@@ -113,7 +113,7 @@ class DataTablesError(ValueError):
 
 
 class DataTable(object):
-    def __init__(self, params, model, query, columns, total_recs):
+    def __init__(self, params, model, query, columns, total_recs=0):
         self.params = params
         self.model = model
         self.query = query
@@ -269,8 +269,8 @@ class DataTable(object):
         search = self.params["search"]
 
         query = self.query
-        # total_records = query.count()
-        total_records = self.total_recs
+        total_records = query.count()
+        #total_records = self.total_recs
 
         # handle searches here rather than using the old searchable function
         if search.get("value", None):

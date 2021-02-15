@@ -279,7 +279,15 @@ class DataTable(object):
             # this builds a list of .like() comparisons for the
             # value passed and every column so it's a global search
             orlist = []
+            non_searchable = []
+            for col, row in self.params["columns"].items():
+                if not row['searchable']:
+                    non_searchable.append(col)
+                elif str(row['searchable']).lower() == 'false':
+                    non_searchable.append(col)
             for searchcol in self.columns:
+                if searchcol in non_searchable:
+                    continue
                 model_column = self.get_column(searchcol)
                 orlist.append(model_column.like(unicode(valuestr)))
 

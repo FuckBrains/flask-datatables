@@ -285,12 +285,13 @@ class DataTable(object):
                     non_searchable.append(col)
                 elif str(row['searchable']).lower() == 'false':
                     non_searchable.append(col)
+            log_debug({"non_searchable":non_searchable})
             for searchcol in self.columns:
                 if searchcol in non_searchable:
                     continue
                 model_column = self.get_column(searchcol)
                 orlist.append(model_column.like(unicode(valuestr)))
-
+            log_debug({"orlist":orlist})
             # modify the query then return it
             query = query.filter(and_(or_(*orlist)))
 

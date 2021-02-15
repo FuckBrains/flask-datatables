@@ -282,9 +282,9 @@ class DataTable(object):
             non_searchable = []
             for col, row in self.params["columns"].items():
                 if not row['searchable']:
-                    non_searchable.append(row['name'])
+                    non_searchable.append(row['data'])
                 elif str(row['searchable']).lower() == 'false':
-                    non_searchable.append(row['name'])
+                    non_searchable.append(row['data'])
             log_debug({"non_searchable":non_searchable})
             log_debug({"searchcols":self.columns})
             for searchcol in self.columns:
